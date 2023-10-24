@@ -1,6 +1,9 @@
 Create Network:
 ```docker network create todo```
 
+Build Web:
+```docker build -t workshop .```
+
 Create Web
 ```docker run -d --network todo --name web -p 80:80 -v $(PWD):/var/www/html workshop```
 
