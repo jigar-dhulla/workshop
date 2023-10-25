@@ -32,37 +32,48 @@
 <html>
 <head>
     <title>TODO App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>TODO App</h1>
-
-    <!-- Add a new task form -->
-    <form method="post">
-        <input type="text" name="task" placeholder="Enter a new task" required>
-        <button type="submit" name="addTask">Add Task</button>
-    </form>
-    <?
-    // Display tasks
-    $sql = "SELECT * FROM todos";
-    $stmt = $conn->query($sql);
-
-    if ($stmt->rowCount() > 0) {
-        echo "<ul>";
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $task = $row['task'];
-            $taskId = $row['id'];
-            $completed = $row['completed'] ? 'checked' : '';
-
-            echo "<li>
-                    <input type='checkbox' $completed onchange='toggleComplete($taskId)'>
-                    $task
-                </li>";
+    <!-- Navbar -->
+    <nav class="bg-blue-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">TODO App</h1>
+            <!-- Add any additional navbar elements or links here -->
+        </div>
+    </nav>
+    <div class="container mx-auto mt-8">
+        <!-- Add a new task form -->
+        <form method="post" class="my-4">
+            <div class="flex">
+                <input type="text" name="task" placeholder="Enter a new task" class="px-2 py-1 border rounded-l w-full" required>
+                <button type="submit" name="addTask" class="bg-blue-500 text-white px-4 py-1 rounded-r hover:bg-blue-600">Add</button>
+            </div>
+        </form>
+        <?
+        // Display tasks
+        $sql = "SELECT * FROM todos";
+        $stmt = $conn->query($sql);
+        if ($stmt->rowCount() > 0) {
+            echo "<ul class='my-4'>";
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $task = $row['task'];
+                $taskId = $row['id'];
+                $completed = $row['completed'] ? 'checked' : '';
+        
+                echo "<li class='flex items-center justify-between px-2 py-1 border-b'>
+                        <label class='flex items-center space-x-2'>
+                            <input type='checkbox' $completed onchange='toggleComplete($taskId)' class='form-checkbox'>
+                            <span class='text-lg'>$task</span>
+                        </label>
+                    </li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<p class='text-gray-600'>No tasks found.</p>";
         }
-        echo "</ul>";
-    } else {
-        echo "No tasks found.";
-    }
-    ?>
+        ?>
+    </div>
 
     <script>
         // Toggle task completion
