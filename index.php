@@ -1,4 +1,3 @@
-
 <?php
     try {
         $db_host = "db";
@@ -22,12 +21,13 @@
         $stmt->bindParam(':task', $task, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            header("Location: index.php");
+            header('Location: index.php');
         } else {
             echo "Error: " . $stmt->errorInfo()[2];
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
