@@ -18,3 +18,20 @@ Truncate DB
 ```TRUNCATE TABLE todoapp```
 
 Access localhost
+
+Installing on AWS
+- Create EC2 Instance
+    - Install Ubuntu 22.04 AMI
+    - Install Apache, PHP and PHP MySQL Extension
+
+        `sudo apt install apache2 php libapache2-mod-php php-mysql`
+    - Clone the project
+        `cd /var/www/html`
+
+        `sudo rm -rf index.html`
+
+        `git clone https://github.com/jigarakatidus/workshop.git .`
+
+    - Give correct permission to files and directory
+- Create RDS
+    - Update index.php and toggle.php with database credentials.
