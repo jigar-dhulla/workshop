@@ -50,7 +50,7 @@
                 <button type="submit" name="addTask" class="bg-blue-500 text-white px-4 py-1 rounded-r hover:bg-blue-600">Add</button>
             </div>
         </form>
-        <?
+        <?php
         // Display tasks
         $sql = "SELECT * FROM todos";
         $stmt = $conn->query($sql);
